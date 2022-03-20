@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "iostream": "cpp",
+        "thread": "cpp",
+        "cstdio": "cpp"
+    },
+    "cmake.configureOnOpen": false
+}
