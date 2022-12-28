@@ -1,31 +1,46 @@
 ## mlx90640 RPI Pico
-This project provides a driver allowing communication between a raspberry pi pico and an mlx90640 thermal sensor.
-Example code is provided allowing visualization of the thermal sensor's output via a com port.
+
+This project provides a driver for communication between a raspberry pi pico and an mlx90640 thermal sensor.
+Example code can be found in the `sample` folder.
 
 
-**Prior setup:**
+
+**Hardware setup:**
 
 connect the mlx90640 camera pins as follows:
 
+```
 (mlx90640 pin) -> (pico pin)
-
 sda -> gp4
-
 scl -> gp5
-
 gnd -> gnd
-
 3-6v -> 3v3
+```
 
 
-**Building:**
+
+**Usage in project:**
+
+`git submodule add https://github.com/VianPatel/ThermalCamera-RPI-Pico.git` (or `git clone` if you prefer to not use submodules)
+Put the following in your `CMakeLists.txt`:
+
+```
+# MLX90640 api
+add_subdirectory("pathToSubmoduleRepoRoot" mlx90640api)
+target_link_libraries(${CMAKE_PROJECT_NAME} mlx90640-RPI-Pico)
+```
+
+replace `pathToSubmoduleRepoRoot` with the path to the submodule root
+
+
+
+**Compiling sample:**
 
 install gcc-arm-none-eabi from:
 https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-rm/downloads
 or: `sudo apt install cmake gcc-arm-none-eabi libnewlib-arm-none-eabi libstdc++-arm-none-eabi-newlib`
 
-
-`git clone  https://github.com/VianPatel/ThermalCamera-RPI-Pico.git`
+`git clone https://github.com/VianPatel/ThermalCamera-RPI-Pico.git`
 
 `cd ThermalCamera-RPI-Pico`
 
@@ -41,13 +56,19 @@ or: `sudo apt install cmake gcc-arm-none-eabi libnewlib-arm-none-eabi libstdc++-
 
 `cd build`
 
-`cmake -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE -DCMAKE_C_COMPILER:FILEPATH="fullPathToCompiler" -DCMAKE_CXX_COMPILER:FILEPATH="fullPathToCompiler" ..`
+`cmake -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE -DCMAKE_C_COMPILER:FILEPATH="fullPathToCompiler" -DCMAKE_CXX_COMPILER:FILEPATH="fullPathToCompiler" ../sample`
+
+This command might look something like:
+
+```
+cmake -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE -DCMAKE_C_COMPILER:FILEPATH="/usr/bin/arm-none-eabi-gcc" -DCMAKE_CXX_COMPILER:FILEPATH="/usr/bin/arm-none-eabi-g++" ../sample
+```
 
 `cmake --build .`
 
 
-**Usage:**
 
-Copy "ThermalCamera-RPI-Pico.uf2" inside the build folder to the pico's root folder
-Connect the pico's to a computer via a micro usb data cable
-Establish a connection to the com port (this can be done via putty on windows)
+**Sample usage:**
+
+Copy `ThermalCamera.uf2` from the `build` folder to the pico's root folder
+Establish a connection to the pico's com port (this can be done via putty on windows)

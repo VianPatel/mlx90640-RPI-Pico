@@ -4,11 +4,14 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
+//added #pragma once on 20221227
+#pragma once
+
 #include <stdio.h>
 
-#include "hardware/i2c.h"
-#include "pico/binary_info.h"
-#include "pico/stdlib.h"
+#include <hardware/i2c.h>
+#include <pico/binary_info.h>
+#include <pico/stdlib.h>
 
 bool reserved_addr(uint8_t addr) {
     return (addr & 0x78) == 0 || (addr & 0x78) == 0x78;
