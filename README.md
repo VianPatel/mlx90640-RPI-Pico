@@ -2,16 +2,16 @@
 
 This project provides a driver for communication between a raspberry pi pico and an mlx90640 thermal sensor.
 
+The api can be found in the `include` and `src` folders.
 
-Example code can be found in the `sample` folder.
-
-
-
+The `sample` folder contains example code showing how to use the api, along with a header only library `ThermalCamera.h` that provides a simple to use wrapper.
 
 
 **Hardware setup:**
 
-connect the mlx90640 camera pins as follows:
+Using the api or sample requries the following hardware setup.
+
+Connect the mlx90640 camera pins as follows:
 
 ```
 (mlx90640 pin) -> (pico pin)
@@ -23,12 +23,9 @@ gnd -> gnd
 
 
 
-
-
-**Usage in project:**
+**Using the api in your project:**
 
 `git submodule add https://github.com/VianPatel/ThermalCamera-RPI-Pico.git` (or `git clone` if you prefer to not use submodules)
-
 
 Put the following in your `CMakeLists.txt`:
 
@@ -41,24 +38,13 @@ target_link_libraries(${CMAKE_PROJECT_NAME} mlx90640-RPI-Pico)
 replace `pathToSubmoduleRepoRoot` with the path to the submodule root
 
 
-
-
-
 **Compiling sample:**
 
 install gcc-arm-none-eabi from:
 
 
 https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-rm/downloads
-or with: 
-
-```
-sudo apt install cmake gcc-arm-none-eabi libnewlib-arm-none-eabi libstdc++-arm-none-eabi-newlib
-```
-
-
-
-
+or with: `sudo apt install cmake gcc-arm-none-eabi libnewlib-arm-none-eabi libstdc++-arm-none-eabi-newlib`
 
 
 ```
