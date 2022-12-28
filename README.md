@@ -1,7 +1,11 @@
 ## mlx90640 RPI Pico
 
 This project provides a driver for communication between a raspberry pi pico and an mlx90640 thermal sensor.
+
+
 Example code can be found in the `sample` folder.
+
+
 
 
 
@@ -19,9 +23,13 @@ gnd -> gnd
 
 
 
+
+
 **Usage in project:**
 
 `git submodule add https://github.com/VianPatel/ThermalCamera-RPI-Pico.git` (or `git clone` if you prefer to not use submodules)
+
+
 Put the following in your `CMakeLists.txt`:
 
 ```
@@ -34,9 +42,13 @@ replace `pathToSubmoduleRepoRoot` with the path to the submodule root
 
 
 
+
+
 **Compiling sample:**
 
 install gcc-arm-none-eabi from:
+
+
 https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-rm/downloads
 or with: 
 
@@ -83,6 +95,8 @@ cd build
 
 
 
+
+
 ```
 cmake -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE -DCMAKE_C_COMPILER:FILEPATH="fullPathToCompiler" -DCMAKE_CXX_COMPILER:FILEPATH="fullPathToCompiler" ../sample
 ```
@@ -95,6 +109,8 @@ cmake -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE -DCMAKE_C_COMPILER:FILEPATH="/us
 
 
 
+
+
 ```
 cmake --build .
 ```
@@ -103,9 +119,9 @@ cmake --build .
 
 
 
-
-
 **Sample usage:**
 
 Copy `ThermalCamera.uf2` from the `build` folder to the pico's root folder
+
+
 Establish a connection to the pico's com port (this can be done via putty on windows)
