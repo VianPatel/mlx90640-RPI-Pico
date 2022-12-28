@@ -38,33 +38,70 @@ replace `pathToSubmoduleRepoRoot` with the path to the submodule root
 
 install gcc-arm-none-eabi from:
 https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-rm/downloads
-or: `sudo apt install cmake gcc-arm-none-eabi libnewlib-arm-none-eabi libstdc++-arm-none-eabi-newlib`
+or with: 
 
-`git clone https://github.com/VianPatel/ThermalCamera-RPI-Pico.git`
+```
+sudo apt install cmake gcc-arm-none-eabi libnewlib-arm-none-eabi libstdc++-arm-none-eabi-newlib
+```
 
-`cd ThermalCamera-RPI-Pico`
 
-`git submodule update --init pico-sdk/`
 
-`cd pico-sdk`
 
-`git submodule update --init lib/tinyusb/`
 
-`cd ../`
 
-`mkdir build`
+```
+git clone https://github.com/VianPatel/ThermalCamera-RPI-Pico.git
+```
 
-`cd build`
+```
+cd ThermalCamera-RPI-Pico
+```
 
-`cmake -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE -DCMAKE_C_COMPILER:FILEPATH="fullPathToCompiler" -DCMAKE_CXX_COMPILER:FILEPATH="fullPathToCompiler" ../sample`
+```
+git submodule update --init pico-sdk/
+```
 
-This command might look something like:
+```
+cd pico-sdk
+```
+
+```
+git submodule update --init lib/tinyusb/
+```
+
+```
+cd ../
+```
+
+```
+mkdir build
+```
+
+```
+cd build
+```
+
+
+
+```
+cmake -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE -DCMAKE_C_COMPILER:FILEPATH="fullPathToCompiler" -DCMAKE_CXX_COMPILER:FILEPATH="fullPathToCompiler" ../sample
+```
+
+With `fullPathToCompiler` filled in, this command might look something like:
 
 ```
 cmake -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE -DCMAKE_C_COMPILER:FILEPATH="/usr/bin/arm-none-eabi-gcc" -DCMAKE_CXX_COMPILER:FILEPATH="/usr/bin/arm-none-eabi-g++" ../sample
 ```
 
-`cmake --build .`
+
+
+```
+cmake --build .
+```
+
+
+
+
 
 
 
