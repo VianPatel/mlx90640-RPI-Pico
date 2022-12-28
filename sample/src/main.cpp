@@ -47,7 +47,7 @@ int main() {
     while (true) {
         camera.capture(frame);
         printFrame(frame);
-        printf(("Max temp (fahrenheit): " + std::to_string(toFahrenheit(camera.getMaxTemp(frame)))).c_str());
+        printf(("Max temp (fahrenheit): " + std::to_string(toFahrenheit(frame.getMaxTemp()))).c_str());
         printf("\x1b[33A");
     }
     return 0;

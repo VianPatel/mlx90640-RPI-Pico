@@ -34,6 +34,24 @@ public:
     inline int getHeight() { return 24; }
     inline int getNumPixels() { return 768; }
     inline float getTemp(int width, int height) { return data[32 * (23 - height) + width]; }
+    float getMaxTemp() {
+        float max = data[0];
+        for (int i = 0; i < getNumPixels(); i++) {
+            if (data[i] > max) {
+                max = data[i];
+            }
+        }
+        return max;
+    }
+    float getMinTemp() {
+        float min = data[0];
+        for (int i = 0; i < getNumPixels(); i++) {
+            if (data[i] < min) {
+                min = data[i];
+            }
+        }
+        return min;
+    }
 private:
     float data[768];
     friend class Camera;
@@ -68,24 +86,6 @@ public:
 
         MLX90640_BadPixelsCorrection(mlx90640.brokenPixels, frame.data, 1, &mlx90640);
         MLX90640_BadPixelsCorrection(mlx90640.outlierPixels, frame.data, 1, &mlx90640);
-    }
-    float getMaxTemp(Frame& frame) {
-        float max = frame.data[0];
-        for (int i = 0; i < frame.getNumPixels(); i++) {
-            if (frame.data[i] > max) {
-                max = frame.data[i];
-            }
-        }
-        return max;
-    }
-    float getMinTemp(Frame& frame) {
-        float min = frame.data[0];
-        for (int i = 0; i < frame.getNumPixels(); i++) {
-            if (frame.data[i] < min) {
-                min = frame.data[i];
-            }
-        }
-        return min;
     }
 private:
     float emissivity = 0.98;
